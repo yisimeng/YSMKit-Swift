@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'YSMKit_Example' do
+  pod 'YSMKit', :path => '../'
+
+  target 'YSMKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
