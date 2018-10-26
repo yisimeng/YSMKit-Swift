@@ -1,0 +1,36 @@
+{
+  "name": "YSMKit",
+  "version": "0.1.0",
+  "summary": "A short description of YSMKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/yisimeng/YSMKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "yisimeng": "465386131@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/yisimeng/YSMKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "YSMKit/Classes/**/*",
+  "dependencies": {
+    "HandyJSON": [
+
+    ],
+    "Alamofire": [
+
+    ],
+    "Kingfisher": [
+
+    ],
+    "SwiftyJSON": [
+
+    ]
+  }
+}
