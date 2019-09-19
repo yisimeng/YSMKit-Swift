@@ -25,11 +25,13 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'yisimeng' => '465386131@qq.com' }
-  s.source           = { :git => 'https://github.com/yisimeng/YSMKit.git', :tag => s.version.to_s }
+  s.source           = { :git => '/Users/duanzengguang/simeng/YSMKit-Swift' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-
+  
+  s.swift_version = '4.0'
+  
   s.source_files = 'YSMKit/Classes/**/*'
   
   # s.resource_bundles = {
