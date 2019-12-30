@@ -8,6 +8,8 @@
 
 import UIKit
 
+// 类似于图片浏览，一个tab中包含多张图片的collection
+
 protocol YSMPageCollectionViewDataSource:class {
     func numberOfSections(in pageCollectionView: YSMPageCollectionView) -> Int
     func pageCollectionView(_ pageCollectionView: YSMPageCollectionView, numberOfItemsInSection section: Int) -> Int
