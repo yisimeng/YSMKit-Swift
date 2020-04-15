@@ -286,7 +286,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YSMKit_Example/Pods-YSMKit_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-YSMKit_Example/Pods-YSMKit_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -303,7 +303,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YSMKit_Example/Pods-YSMKit_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YSMKit_Example/Pods-YSMKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC9F1FDF7E812B08D8044E9C /* [CP] Check Pods Manifest.lock */ = {

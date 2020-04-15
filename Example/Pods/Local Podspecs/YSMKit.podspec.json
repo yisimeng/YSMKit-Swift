@@ -12,12 +12,12 @@
     "yisimeng": "465386131@qq.com"
   },
   "source": {
-    "git": "https://github.com/yisimeng/YSMKit.git",
-    "tag": "0.1.0"
+    "git": "/Users/duanzengguang/simeng/YSMKit-Swift"
   },
   "platforms": {
     "ios": "8.0"
   },
+  "swift_versions": "4.0",
   "source_files": "YSMKit/Classes/**/*",
   "dependencies": {
     "HandyJSON": [
@@ -32,5 +32,6 @@
     "SwiftyJSON": [
 
     ]
-  }
+  },
+  "swift_version": "4.0"
 }
