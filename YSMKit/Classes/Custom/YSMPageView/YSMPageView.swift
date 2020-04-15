@@ -8,23 +8,22 @@
 
 import UIKit
 
-class YSMPageView: UIView {
+class YSMPageView: NSObject {
     
     fileprivate var titles:[String]
     fileprivate var childVCs:[UIViewController]
     fileprivate var parentVC:UIViewController
     fileprivate var style:YSMPageViewStye
     
-    fileprivate lazy var titleView :YSMPageTitleView = {
-        let titleViewFrame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.style.titleViewHeight)
+    lazy var titleView :YSMPageTitleView = {
+        let titleViewFrame = self.style.titleViewFrame
         let titleView = YSMPageTitleView(frame: titleViewFrame, titles: self.titles, style:self.style)
-        titleView.backgroundColor = UIColor.randomColor()
         titleView.delegate = self
         return titleView
     }()
     
-    fileprivate lazy var contentView :YSMPageContentView = {
-        let contentViewFrame = CGRect(x: 0, y: self.style.titleViewHeight, width: self.bounds.width, height: self.bounds.height - self.style.titleViewHeight)
+    lazy var contentView :YSMPageContentView = {
+        let contentViewFrame = self.style.contentViewFrame
         let contentView = YSMPageContentView(frame: contentViewFrame, childVCs: self.childVCs, parentVC: self.parentVC, style:self.style)
         contentView.delegate = self
         return contentView
@@ -40,21 +39,11 @@ class YSMPageView: UIView {
         self.parentVC = parentController;
         self.style = style;
         
-        super.init(frame: frame)
-        
-        prepareUI();
+        super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - prepareUI
-extension YSMPageView{
-    fileprivate func prepareUI() {
-        addSubview(titleView)
-        addSubview(contentView)
     }
 }
 

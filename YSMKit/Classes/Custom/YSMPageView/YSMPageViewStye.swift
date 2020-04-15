@@ -25,10 +25,10 @@ import UIKit
 
 class YSMPageViewStye {
     
-    //titleView的高度
-    var titleViewHeight:CGFloat = 44
+    //titleView的Frame
+    var titleViewFrame:CGRect = CGRect(origin: .zero, size: CGSize(width: kScreenWidth, height: 60))
     //title的字体大小
-    var titleFontSize:CGFloat = 14
+    var titleFontSize:CGFloat = 18
     //title选中的颜色(RGB)
     var titleSelectColor:UIColor = UIColor(hex: 0x000000, alpha: 1)
     //title的未选中颜色(RGB)
@@ -39,6 +39,11 @@ class YSMPageViewStye {
     var isTitleAutoresize:Bool = true
     //title自适应时的间距（前提：isTitleAutoresize = true）
     var titleMargin:CGFloat = 20
+    // titleView 背景颜色
+    var titleViewBackgroundColor = UIColor.white
+    
+    // contentView frame
+    var contentViewFrame: CGRect = CGRect(origin: .zero, size: CGSize(width: kScreenWidth, height: kScreenHeight))
     
     //下划线是否显示
     var isBottomLineShow:Bool = true

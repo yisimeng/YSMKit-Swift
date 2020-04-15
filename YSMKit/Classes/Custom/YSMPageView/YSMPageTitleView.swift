@@ -19,11 +19,15 @@ class YSMPageTitleView: UIView {
     fileprivate var titles : [String]
     fileprivate var style : YSMPageViewStye
     
+    fileprivate lazy var titlesTotalWidth: CGFloat = {
+        return (titles.joined() as NSString).boundingRect(with: CGSize(width:CGFloat(MAXFLOAT), height: 0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: style.titleFontSize)], context: nil).width + CGFloat(titles.count - 1) * style.titleMargin
+    }()
     
     fileprivate lazy var scrollView : UIScrollView = {
         let scrollView = UIScrollView(frame: self.bounds)
         scrollView.bounces = true
         scrollView.scrollsToTop = false
+        scrollView.backgroundColor = UIColor.clear
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
@@ -44,6 +48,8 @@ class YSMPageTitleView: UIView {
         self.titles = titles
         self.style = style
         super.init(frame: frame)
+        
+        backgroundColor = style.titleViewBackgroundColor
         
         prepareUI()
     }
@@ -100,24 +106,40 @@ extension YSMPageTitleView{
     fileprivate func setupTitleLabelsFrame() {
         let labelCount = titleLabels.count
         let y:CGFloat = 0,h:CGFloat = bounds.height
-        for (index, label) in titleLabels.enumerated() {
-            var x:CGFloat, w:CGFloat
-            if style.isTitleAutoresize{
-                //获取title宽度
-                w = (titles[index] as NSString).boundingRect(with: CGSize(width:CGFloat(MAXFLOAT), height: 0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: style.titleFontSize)], context: nil).width
-                if index == 0 {
-                    x = style.titleMargin * 0.5
+        
+        if titlesTotalWidth > bounds.width {
+            for (index, label) in titleLabels.enumerated() {
+                var x:CGFloat, w:CGFloat
+                if style.isTitleAutoresize{
+                    //获取title宽度
+                    w = (titles[index] as NSString).boundingRect(with: CGSize(width:CGFloat(MAXFLOAT), height: 0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: style.titleFontSize)], context: nil).width
+                    if index == 0 {
+                        x = style.titleMargin * 0.5
+                    }else{
+                        //获取上一个label的right值
+                        let lastLabel = titleLabels[index-1]
+                        x = lastLabel.frame.maxX + style.titleMargin
+                    }
                 }else{
-                    //获取上一个label的right值
+                    w = bounds.width/CGFloat(labelCount)
+                    x = CGFloat(index) * w
+                }
+                label.frame = CGRect(x: x, y: y, width: w, height: h)
+            }
+        }else {
+            for (index, label) in titleLabels.enumerated() {
+                var x: CGFloat, w: CGFloat
+                w = (titles[index] as NSString).boundingRect(with: CGSize(width:CGFloat(MAXFLOAT), height: 0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: style.titleFontSize)], context: nil).width
+                if index == 0{
+                    x = (bounds.width - titlesTotalWidth)/2
+                }else {
                     let lastLabel = titleLabels[index-1]
                     x = lastLabel.frame.maxX + style.titleMargin
                 }
-            }else{
-                w = bounds.width/CGFloat(labelCount)
-                x = CGFloat(index) * w
+                label.frame = CGRect(x: x, y: y, width: w, height: h)
             }
-            label.frame = CGRect(x: x, y: y, width: w, height: h)
         }
+        
     }
     
     fileprivate func setupBottomLine() {
@@ -197,7 +219,7 @@ extension YSMPageTitleView{
     //调整label居中
     func adjustCurrentLabelCentered(_ targetIndex:Int) {
         //设置选中label居中
-        guard style.isTitleAutoresize else {
+        guard style.isTitleAutoresize, titlesTotalWidth > bounds.width else {
             return
         }
         let currentLabel = titleLabels[targetIndex]

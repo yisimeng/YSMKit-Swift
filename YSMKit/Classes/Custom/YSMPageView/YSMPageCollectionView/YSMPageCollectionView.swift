@@ -53,7 +53,7 @@ class YSMPageCollectionView: UIView {
 extension YSMPageCollectionView{
     fileprivate func prepareUI() {
         //初始化titleView
-        let titleViewFrame = CGRect(x: 0, y: 0, width: self.bounds.width, height: style.titleViewHeight)
+        let titleViewFrame =  style.titleViewFrame
         titleView = YSMPageTitleView(frame: titleViewFrame, titles: titles, style: style)
         titleView.backgroundColor = UIColor.randomColor()
         titleView.delegate = self
@@ -67,7 +67,7 @@ extension YSMPageCollectionView{
         pageControl.backgroundColor = UIColor.randomColor()
         addSubview(pageControl)
         
-        collectionView = UICollectionView(frame:CGRect(x: 0, y: titleView.bounds.maxY, width: bounds.width, height: bounds.height-style.titleViewHeight-pageControlHeight) , collectionViewLayout: layout)
+        collectionView = UICollectionView(frame:style.contentViewFrame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = true
